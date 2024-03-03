@@ -23,9 +23,8 @@ angle_c_entry = Entry(root)
 int_var = IntVar()
 
 
+# The change of the user interface after pressing the radiobutton "SAS"
 def sas():
-    # The change of the user interface after pressing the radiobutton "SAS"
-
     # Labels
     edge_a_label.grid(row=0, column=2)
     edge_b_label.grid(row=1, column=2)
@@ -41,10 +40,10 @@ def sas():
     angle_a_entry.grid_forget()
     angle_b_entry.grid_forget()
     edge_c_entry.grid_forget()
+    
 
-
+# The change of the user interface after pressing the radiobutton "SSS"
 def sss():
-    # The change of the user interface after pressing the radiobutton "SSS"
 
     # Labels
     edge_a_label.grid(row=0, column=2)
@@ -62,14 +61,16 @@ def sss():
     angle_b_entry.grid_forget()
     angle_c_entry.grid_forget()
 
+
 sas()  # The default option is "SAS".
 Radiobutton(root, text="SAS", variable=int_var, value=0, command=sas).grid(row=0, column=0)
 Radiobutton(root, text="SSS", variable=int_var, value=1, command=sss).grid(row=1, column=0)
 
 
+# When press "Process"…
 def process():
     try:
-        if int_var.get() == 0:  # When choosing option "SAS"...
+        if int_var.get() == 0:  # When choosing option "SAS"…
             angle_c = float(angle_c_entry.get())
             if angle_c < 180:  # The angle of a triangle is never bigger than 180°.
                 edge_a = float(edge_a_entry.get())
@@ -104,7 +105,7 @@ tanC = %f.""" % (area, circumference, 2 * area / circumference, edge_c, rad_a / 
                  sin(rad_a), sin(rad_b), sin(rad_c), cos_a, cos_b, cos_c, tan(rad_a), tan(rad_b), tan(rad_c)))
             else:
                 showerror("Error", "This is not a triangle.")
-        else:  # When choosing option "SSS"...
+        else:  # When choosing option "SSS"…
             edge_a = float(edge_a_entry.get())
             edge_b = float(edge_b_entry.get())
             edge_c = float(edge_c_entry.get())
@@ -140,6 +141,7 @@ tanC = %f.""" % (area, circumference, 2 * area / circumference, rad_a / pi * 180
                 showerror("Error", "This is not a triangle.")
     except ValueError:
         showerror("Error", "Invalid value.")  # When some unexpected things happened...
+
 
 Button(root, text="Process", command=process).grid(row=2, column=0)
 root.mainloop()
