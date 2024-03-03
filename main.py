@@ -44,7 +44,6 @@ def sas():
 
 # The change of the user interface after pressing the radiobutton "SSS"
 def sss():
-
     # Labels
     edge_a_label.grid(row=0, column=2)
     edge_b_label.grid(row=1, column=2)
