@@ -76,32 +76,30 @@ def process():
                 edge_b = float(edge_b_entry.get())
                 rad_c = angle_c * pi / 180
                 cos_c = cos(rad_c)
-                edge_c = sqrt(edge_a * edge_a + edge_b * edge_b - 2 * edge_a * edge_b * cos(rad_c))
-                cos_a = (edge_b * edge_b + edge_c * edge_c - edge_a * edge_a) / (2 * edge_b * edge_c)
-                cos_b = (edge_a * edge_a + edge_c * edge_c - edge_b * edge_b) / (2 * edge_a * edge_c)
+                edge_c = sqrt(edge_a**2 + edge_b**2 - 2 * edge_a * edge_b * cos(rad_c))
+                cos_a = (edge_b**2 + edge_c**2 - edge_a**2) / (2 * edge_b * edge_c)
+                cos_b = (edge_a**2 + edge_c**2 - edge_b**2) / (2 * edge_a * edge_c)
                 rad_a = acos(cos_a)
                 rad_b = acos(cos_b)
                 half_circumference = (edge_a + edge_b + edge_c) / 2
                 area = sqrt(half_circumference * (half_circumference - edge_a) * (half_circumference - edge_b) * (half_circumference - edge_c))
                 circumference = 2 * half_circumference
                 showinfo("Information",
-                         """Area = %f.
-Circumference = %f.
-Inradius = %f.
-Edge c = %f.
-∠A = %f°.
-∠B = %f°.
-sinA = %f.
-sinB = %f.
-sinC = %f.
-cosA = %f.
-cosB = %f.
-cosC = %f.
-tanA = %f.
-tanB = %f.
-tanC = %f.""" % (area, circumference, 2 * area / circumference, edge_c, rad_a / pi * 180,
-                 rad_b / pi * 180,
-                 sin(rad_a), sin(rad_b), sin(rad_c), cos_a, cos_b, cos_c, tan(rad_a), tan(rad_b), tan(rad_c)))
+                         f"""Area = {area}.
+Circumference = {circumference}.
+Inradius = {2 * area / circumference}.
+Edge c = {edge_c}.
+∠A = {rad_a / pi * 180}°.
+∠B = {rad_b / pi * 180}°.
+sinA = {sin(rad_a)}.
+sinB = {sin(rad_b)}.
+sinC = {sin(rad_c)}.
+cosA = {cos_a}.
+cosB = {cos_b}.
+cosC = {cos_c}.
+tanA = {tan(rad_a)}.
+tanB = {tan(rad_b)}.
+tanC = {tan(rad_c)}.""")
             else:
                 showerror("Error", "This is not a triangle.")
         else:  # When choosing option "SSS"…
@@ -112,30 +110,28 @@ tanC = %f.""" % (area, circumference, 2 * area / circumference, edge_c, rad_a / 
                 half_circumference = (edge_a + edge_b + edge_c) / 2
                 area = sqrt(half_circumference * (half_circumference - edge_a) * (half_circumference - edge_b) * (half_circumference - edge_c))
                 circumference = 2 * half_circumference
-                cos_a = (edge_b * edge_b + edge_c * edge_c - edge_a * edge_a) / (2 * edge_b * edge_c)
-                cos_b = (edge_a * edge_a + edge_c * edge_c - edge_b * edge_b) / (2 * edge_a * edge_c)
-                cos_c = (edge_a * edge_a + edge_b * edge_b - edge_c * edge_c) / (2 * edge_a * edge_b)
+                cos_a = (edge_b**2 + edge_c**2 - edge_a**2) / (2 * edge_b * edge_c)
+                cos_b = (edge_a**2 + edge_c**2 - edge_b**2) / (2 * edge_a * edge_c)
+                cos_c = (edge_a**2 + edge_b**2 - edge_c**2) / (2 * edge_a * edge_b)
                 rad_a = acos(cos_a)
                 rad_b = acos(cos_b)
                 rad_c = acos(cos_c)
                 showinfo("Information",
-                         """Area = %f.
-Circumference = %f.
-Inradius = %f.
-∠A = %f°.
-∠B = %f°.
-∠C = %f°.
-sinA = %f.
-sinB = %f.
-sinC = %f.
-cosA = %f.
-cosB = %f.
-cosC = %f.
-tanA = %f.
-tanB = %f.
-tanC = %f.""" % (area, circumference, 2 * area / circumference, rad_a / pi * 180, rad_b / pi * 180,
-                 rad_c / pi * 180,
-                 sin(rad_a), sin(rad_b), sin(rad_c), cos_a, cos_b, cos_c, tan(rad_a), tan(rad_b), tan(rad_c)))
+                         f"""Area = {area}.
+Circumference = {circumference}.
+Inradius = {2 * area / circumference}.
+∠A = {rad_a / pi * 180}°.
+∠B = {rad_b / pi * 180}°.
+∠C = {rad_c / pi * 180}°.
+sinA = {sin(rad_a)}.
+sinB = {sin(rad_b)}.
+sinC = {sin(rad_c)}.
+cosA = {cos_a}.
+cosB = {cos_b}.
+cosC = {cos_c}.
+tanA = {tan(rad_a)}.
+tanB = {tan(rad_b)}.
+tanC = {tan(rad_c)}.""")
             else:
                 showerror("Error", "This is not a triangle.")
     except ValueError:
