@@ -1,3 +1,7 @@
+"""
+This is the main program.
+"""
+
 from math import pi, sqrt, sin, cos, tan, acos
 from tkinter.messagebox import showinfo, showerror
 
@@ -23,8 +27,10 @@ angle_c_entry = Entry(root)
 int_var = IntVar()
 
 
-# The change of the user interface after pressing the radiobutton "SAS"
 def sas():
+    """
+    The change of the user interface after pressing the radiobutton "SAS".
+    """
     # Labels
     edge_a_label.grid(row=0, column=2)
     edge_b_label.grid(row=1, column=2)
@@ -40,10 +46,12 @@ def sas():
     angle_a_entry.grid_forget()
     angle_b_entry.grid_forget()
     edge_c_entry.grid_forget()
-    
 
-# The change of the user interface after pressing the radiobutton "SSS"
+
 def sss():
+    """
+    The change of the user interface after pressing the radiobutton "SSS".
+    """
     # Labels
     edge_a_label.grid(row=0, column=2)
     edge_b_label.grid(row=1, column=2)
@@ -66,8 +74,10 @@ Radiobutton(root, text="SAS", variable=int_var, value=0, command=sas).grid(row=0
 Radiobutton(root, text="SSS", variable=int_var, value=1, command=sss).grid(row=1, column=0)
 
 
-# When press "Process"…
 def process():
+    """
+    When press "Process".
+    """
     try:
         if int_var.get() == 0:  # When choosing option "SAS"…
             angle_c = float(angle_c_entry.get())
@@ -82,7 +92,14 @@ def process():
                 rad_a = acos(cos_a)
                 rad_b = acos(cos_b)
                 half_circumference = (edge_a + edge_b + edge_c) / 2
-                area = sqrt(half_circumference * (half_circumference - edge_a) * (half_circumference - edge_b) * (half_circumference - edge_c))
+                area = sqrt(half_circumference * (
+                        half_circumference - edge_a
+                    ) * (
+                        half_circumference - edge_b
+                    ) * (
+                        half_circumference - edge_c
+                    )
+                )
                 circumference = 2 * half_circumference
                 showinfo("Information",
                          f"""Area = {area}.
@@ -106,9 +123,17 @@ tanC = {tan(rad_c)}.""")
             edge_a = float(edge_a_entry.get())
             edge_b = float(edge_b_entry.get())
             edge_c = float(edge_c_entry.get())
-            if edge_a + edge_b > edge_c and edge_a + edge_c > edge_b and edge_b + edge_c > edge_a:  # Check whether it is a triangle.
+            # Check whether it is a triangle.
+            if edge_a + edge_b > edge_c and edge_a + edge_c > edge_b and edge_b + edge_c > edge_a:
                 half_circumference = (edge_a + edge_b + edge_c) / 2
-                area = sqrt(half_circumference * (half_circumference - edge_a) * (half_circumference - edge_b) * (half_circumference - edge_c))
+                area = sqrt(half_circumference * (
+                            half_circumference - edge_a
+                    ) * (
+                            half_circumference - edge_b
+                    ) * (
+                            half_circumference - edge_c
+                    )
+                )
                 circumference = 2 * half_circumference
                 cos_a = (edge_b**2 + edge_c**2 - edge_a**2) / (2 * edge_b * edge_c)
                 cos_b = (edge_a**2 + edge_c**2 - edge_b**2) / (2 * edge_a * edge_c)
