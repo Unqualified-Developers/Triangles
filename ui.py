@@ -2,7 +2,7 @@ import win32con
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout
 from PyQt5.QtGui import QFont
 from qfluentwidgets import FluentIcon
-from qfluentwidgets import RadioButton, PushButton, LineEdit, MessageBox, HyperlinkButton
+from qfluentwidgets import RadioButton, PrimaryPushButton, LineEdit, MessageBox, HyperlinkButton
 from win32clipboard import OpenClipboard, EmptyClipboard, SetClipboardData, CloseClipboard
 from calculate import p_sss, p_sas
 
@@ -20,8 +20,9 @@ class Window(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Triangles')
-        self.setMinimumSize(300, 530)
+        self.h = QHBoxLayout(self)
         self.vb = QVBoxLayout(self)
+        self.vbo = QVBoxLayout(self)
         self.r1h = QHBoxLayout(self)
 
         self.h_ea = QHBoxLayout(self)
@@ -48,18 +49,21 @@ class Window(QWidget):
         self.l_ac = QLabel('∠C (°) =', self)
         self.l_ac.setFont(QFont("Microsoft YaHei UI", 10))
 
+        self.l_r = QLabel('There is nothing to show.\nPlease input something.', self)
+        self.l_r.setFont(QFont("Microsoft YaHei UI", 13))
         self.e_ea = LineEdit(self)
         self.e_eb = LineEdit(self)
         self.e_ec = LineEdit(self)
         self.e_aa = LineEdit(self)
         self.e_ab = LineEdit(self)
         self.e_ac = LineEdit(self)
-        self.pb = PushButton('Process', self)
+        self.pb = PrimaryPushButton('Process', self)
         self.lb = HyperlinkButton(url='https://github.com/Unqualified-Developers/Triangles', text='Source Code Repository', icon=FluentIcon.GITHUB)
-
+        self.cb = PrimaryPushButton('Copy', self)
         self.r_sss.clicked.connect(self.sss_c)
         self.r_sas.clicked.connect(self.sas_c)
         self.pb.clicked.connect(self.process)
+        self.cb.clicked.connect(lambda: copy(self.l_r.text()))
 
         self.r1h.addWidget(self.r_sss)
         self.r1h.addWidget(self.r_sas)
@@ -82,9 +86,14 @@ class Window(QWidget):
         self.vb.addLayout(self.h_aa)
         self.vb.addLayout(self.h_ab)
         self.vb.addLayout(self.h_ac)
+        self.vbo.addWidget(self.l_r)
+        self.vbo.addWidget(self.cb)
 
         self.vb.addWidget(self.pb)
         self.vb.addWidget(self.lb)
+        self.h.addLayout(self.vb)
+        self.h.addWidget(QLabel(" "))
+        self.h.addLayout(self.vbo)
 
         self.e_aa.setEnabled(False)
         self.e_ab.setEnabled(False)
@@ -110,14 +119,10 @@ class Window(QWidget):
         try:
             if self.r_sss.isChecked():
                 r = p_sss(float(self.e_ea.text()), float(self.e_eb.text()), float(self.e_ec.text()))
-                m = MessageBox("Process", r + addition, self)
-                if m.exec():
-                    copy(r)
+                self.l_r.setText(r)
             elif self.r_sas.isChecked():
                 r = p_sas(float(self.e_ea.text()), float(self.e_ac.text()), float(self.e_eb.text()))
-                m = MessageBox("Process", r + addition, self)
-                if m.exec():
-                    copy(r)
+                self.l_r.setText(r)
         except ValueError:
             e = "This is not a triangle."
             m = MessageBox("Process", e + addition, self)
