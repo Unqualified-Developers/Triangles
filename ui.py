@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout
 from PyQt5.QtGui import QFont
 from qfluentwidgets import FluentIcon
 from qfluentwidgets import TextEdit, RadioButton, PrimaryPushButton, LineEdit, MessageBox, HyperlinkButton, ScrollBar
-from calculate import p_sss, p_sas, p_aas
+from calculate import sss, sas, aas, asa
 
 
 class FLabel(QLabel):
@@ -22,6 +22,7 @@ class Window(QWidget):
         self.vb = QVBoxLayout(self)
         self.vbo = QVBoxLayout(self)
         self.r1h = QHBoxLayout(self)
+        self.r2h = QHBoxLayout(self)
 
         self.h_ea = QHBoxLayout(self)
         self.h_eb = QHBoxLayout(self)
@@ -34,6 +35,7 @@ class Window(QWidget):
         self.r_sss.setChecked(True)
         self.r_sas = RadioButton('SAS', self)
         self.r_aas = RadioButton('AAS', self)
+        self.r_asa = RadioButton('ASA', self)
 
         self.l_ea = FLabel('Edge a =')
         self.l_eb = FLabel('Edge b =')
@@ -60,11 +62,13 @@ class Window(QWidget):
         self.r_sss.clicked.connect(self.sss_c)
         self.r_sas.clicked.connect(self.sas_c)
         self.r_aas.clicked.connect(self.aas_c)
+        self.r_asa.clicked.connect(self.asa_c)
         self.pb.clicked.connect(self.process)
 
         self.r1h.addWidget(self.r_sss)
         self.r1h.addWidget(self.r_sas)
         self.r1h.addWidget(self.r_aas)
+        self.r2h.addWidget(self.r_asa)
         self.h_ea.addWidget(self.l_ea)
         self.h_ea.addWidget(self.e_ea)
         self.h_eb.addWidget(self.l_eb)
@@ -79,6 +83,7 @@ class Window(QWidget):
         self.h_ac.addWidget(self.e_ac)
 
         self.vb.addLayout(self.r1h)
+        self.vb.addLayout(self.r2h)
         self.vb.addLayout(self.h_ea)
         self.vb.addLayout(self.h_eb)
         self.vb.addLayout(self.h_ec)
@@ -121,14 +126,24 @@ class Window(QWidget):
         self.e_eb.setEnabled(False)
         self.e_ec.setEnabled(False)
 
+    def asa_c(self):
+        self.e_aa.setEnabled(False)
+        self.e_ab.setEnabled(True)
+        self.e_ac.setEnabled(True)
+        self.e_ea.setEnabled(True)
+        self.e_eb.setEnabled(False)
+        self.e_ec.setEnabled(False)
+
     def process(self):
         try:
             if self.r_sss.isChecked():
-                self.l_r.setText(p_sss(float(self.e_ea.text()), float(self.e_eb.text()), float(self.e_ec.text())))
+                self.l_r.setText(sss(float(self.e_ea.text()), float(self.e_eb.text()), float(self.e_ec.text())))
             elif self.r_sas.isChecked():
-                self.l_r.setText(p_sas(float(self.e_ea.text()), float(self.e_ac.text()), float(self.e_eb.text())))
+                self.l_r.setText(sas(float(self.e_ea.text()), float(self.e_ac.text()), float(self.e_eb.text())))
             elif self.r_aas.isChecked():
-                self.l_r.setText(p_aas(float(self.e_aa.text()), float(self.e_ab.text()), float(self.e_ea.text())))
+                self.l_r.setText(aas(float(self.e_aa.text()), float(self.e_ab.text()), float(self.e_ea.text())))
+            elif self.r_asa.isChecked():
+                self.l_r.setText(asa(float(self.e_ab.text()), float(self.e_ea.text()), float(self.e_ac.text())))
         except ValueError:
             m = MessageBox("Process", "This is not a triangle.", self)
             m.exec_()
