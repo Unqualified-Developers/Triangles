@@ -5,7 +5,7 @@ from PyQt5.QtGui import QFont
 from qfluentwidgets import FluentIcon
 from qfluentwidgets import TextEdit, RadioButton, PrimaryPushButton, LineEdit, MessageBox, HyperlinkButton, ScrollBar
 from win32clipboard import OpenClipboard, EmptyClipboard, SetClipboardData, CloseClipboard
-from calculate import p_sss, p_sas
+from calculate import p_sss, p_sas, p_aas
 
 
 def copy(text):
@@ -19,6 +19,7 @@ class Window(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Triangles')
+
         self.h = QHBoxLayout(self)
         self.vb = QVBoxLayout(self)
         self.vbo = QVBoxLayout(self)
@@ -34,6 +35,7 @@ class Window(QWidget):
         self.r_sss = RadioButton('SSS', self)
         self.r_sss.setChecked(True)
         self.r_sas = RadioButton('SAS', self)
+        self.r_aas = RadioButton('AAS', self)
 
         self.l_ea = QLabel('Edge a =', self)
         self.l_ea.setFont(QFont("Microsoft YaHei UI", 10))
@@ -47,6 +49,7 @@ class Window(QWidget):
         self.l_ab.setFont(QFont("Microsoft YaHei UI", 10))
         self.l_ac = QLabel('∠C (°) =', self)
         self.l_ac.setFont(QFont("Microsoft YaHei UI", 10))
+
         self.l_r = TextEdit(self)
         self.l_r.setFont(QFont("Microsoft YaHei UI", 13))
         self.l_r.setText('There is nothing to show.\nPlease input something.')
@@ -64,10 +67,12 @@ class Window(QWidget):
 
         self.r_sss.clicked.connect(self.sss_c)
         self.r_sas.clicked.connect(self.sas_c)
+        self.r_aas.clicked.connect(self.aas_c)
         self.pb.clicked.connect(self.process)
 
         self.r1h.addWidget(self.r_sss)
         self.r1h.addWidget(self.r_sas)
+        self.r1h.addWidget(self.r_aas)
         self.h_ea.addWidget(self.l_ea)
         self.h_ea.addWidget(self.e_ea)
         self.h_eb.addWidget(self.l_eb)
@@ -116,14 +121,22 @@ class Window(QWidget):
         self.e_eb.setEnabled(True)
         self.e_ec.setEnabled(False)
 
+    def aas_c(self):
+        self.e_aa.setEnabled(True)
+        self.e_ab.setEnabled(True)
+        self.e_ac.setEnabled(False)
+        self.e_ea.setEnabled(True)
+        self.e_eb.setEnabled(False)
+        self.e_ec.setEnabled(False)
+
     def process(self):
         try:
             if self.r_sss.isChecked():
-                r = p_sss(float(self.e_ea.text()), float(self.e_eb.text()), float(self.e_ec.text()))
-                self.l_r.setText(r)
+                self.l_r.setText(p_sss(float(self.e_ea.text()), float(self.e_eb.text()), float(self.e_ec.text())))
             elif self.r_sas.isChecked():
-                r = p_sas(float(self.e_ea.text()), float(self.e_ac.text()), float(self.e_eb.text()))
-                self.l_r.setText(r)
+                self.l_r.setText(p_sas(float(self.e_ea.text()), float(self.e_ac.text()), float(self.e_eb.text())))
+            elif self.r_aas.isChecked():
+                self.l_r.setText(p_aas(float(self.e_aa.text()), float(self.e_ab.text()), float(self.e_ea.text())))
         except ValueError:
             m = MessageBox("Process", "This is not a triangle.", self)
             m.exec_()
