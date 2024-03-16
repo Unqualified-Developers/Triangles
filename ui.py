@@ -6,6 +6,13 @@ from qfluentwidgets import TextEdit, RadioButton, PrimaryPushButton, LineEdit, M
 from calculate import p_sss, p_sas, p_aas
 
 
+class FLabel(QLabel):
+    def __init__(self, text):
+        super().__init__()
+        self.setText(text)
+        self.setFont(QFont("Microsoft YaHei UI", 10))
+
+
 class Window(QWidget):
     def __init__(self):
         super().__init__()
@@ -28,18 +35,12 @@ class Window(QWidget):
         self.r_sas = RadioButton('SAS', self)
         self.r_aas = RadioButton('AAS', self)
 
-        self.l_ea = QLabel('Edge a =', self)
-        self.l_ea.setFont(QFont("Microsoft YaHei UI", 10))
-        self.l_eb = QLabel('Edge b =', self)
-        self.l_eb.setFont(QFont("Microsoft YaHei UI", 10))
-        self.l_ec = QLabel('Edge c =', self)
-        self.l_ec.setFont(QFont("Microsoft YaHei UI", 10))
-        self.l_aa = QLabel('∠A (°) =', self)
-        self.l_aa.setFont(QFont("Microsoft YaHei UI", 10))
-        self.l_ab = QLabel('∠B (°) =', self)
-        self.l_ab.setFont(QFont("Microsoft YaHei UI", 10))
-        self.l_ac = QLabel('∠C (°) =', self)
-        self.l_ac.setFont(QFont("Microsoft YaHei UI", 10))
+        self.l_ea = FLabel('Edge a =')
+        self.l_eb = FLabel('Edge b =')
+        self.l_ec = FLabel('Edge c =')
+        self.l_aa = FLabel('∠A (°) =')
+        self.l_ab = FLabel('∠B (°) =')
+        self.l_ac = FLabel('∠C (°) =')
 
         self.l_r = TextEdit(self)
         self.l_r.setFont(QFont("Microsoft YaHei UI", 13))

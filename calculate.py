@@ -1,11 +1,9 @@
-from math import pi, sqrt, sin, cos, tan, acos, degrees, radians
+from math import sqrt, sin, cos, tan, acos, degrees, radians
 
 
-def p_sss(edge_a, edge_b, edge_c):
-    if edge_a + edge_b <= edge_c or edge_a + edge_c <= edge_b or edge_b + edge_c <= edge_a:
-        raise ValueError
+def circumference_area(edge_a, edge_b, edge_c):
     half_circumference = (edge_a + edge_b + edge_c) / 2
-    area = sqrt(half_circumference * (
+    return half_circumference * 2, sqrt(half_circumference * (
             half_circumference - edge_a
         ) * (
             half_circumference - edge_b
@@ -13,7 +11,12 @@ def p_sss(edge_a, edge_b, edge_c):
             half_circumference - edge_c
         )
     )
-    circumference = 2 * half_circumference
+
+
+def p_sss(edge_a, edge_b, edge_c):
+    if edge_a + edge_b <= edge_c or edge_a + edge_c <= edge_b or edge_b + edge_c <= edge_a:
+        raise ValueError
+    circumference, area = circumference_area(edge_a, edge_b, edge_c)
     cos_a = (edge_b ** 2 + edge_c ** 2 - edge_a ** 2) / (2 * edge_b * edge_c)
     cos_b = (edge_a ** 2 + edge_c ** 2 - edge_b ** 2) / (2 * edge_a * edge_c)
     cos_c = (edge_a ** 2 + edge_b ** 2 - edge_c ** 2) / (2 * edge_a * edge_b)
@@ -48,16 +51,7 @@ def p_sas(edge_a, angle_c, edge_b):
     cos_b = (edge_a ** 2 + edge_c ** 2 - edge_b ** 2) / (2 * edge_a * edge_c)
     rad_a = acos(cos_a)
     rad_b = acos(cos_b)
-    half_circumference = (edge_a + edge_b + edge_c) / 2
-    area = sqrt(half_circumference * (
-            half_circumference - edge_a
-        ) * (
-            half_circumference - edge_b
-        ) * (
-            half_circumference - edge_c
-        )
-    )
-    circumference = 2 * half_circumference
+    circumference, area = circumference_area(edge_a, edge_b, edge_c)
     sin_a = sin(rad_a)
     return f"""c = {edge_c}.
 ∠A = {degrees(rad_a)}°.
@@ -90,16 +84,7 @@ def p_aas(angle_a, angle_b, edge_a):
     sin_c = sin(rad_c)
     edge_b = sin_b * d
     edge_c = sin_c * d
-    half_circumference = (edge_a + edge_b + edge_c) / 2
-    area = sqrt(half_circumference * (
-            half_circumference - edge_a
-        ) * (
-            half_circumference - edge_b
-        ) * (
-            half_circumference - edge_c
-        )
-    )
-    circumference = 2 * half_circumference
+    circumference, area = circumference_area(edge_a, edge_b, edge_c)
     return f"""b = {edge_b}.
 c = {edge_c}.
 ∠C = {angle_c}°.

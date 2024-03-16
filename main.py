@@ -1,5 +1,4 @@
 from sys import argv
-
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication
 from ui import Window
