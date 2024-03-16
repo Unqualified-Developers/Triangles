@@ -134,3 +134,33 @@ cosC = {cos(rad_c)}.
 tanA = {tan(rad_a)}.
 tanB = {tan(rad_b)}.
 tanC = {tan(rad_c)}."""
+
+
+def hl(edge_a, edge_c):
+    edge_b = sqrt(edge_c**2 - edge_a**2)
+    if edge_a + edge_b <= edge_c:
+        raise ValueError
+    circumference, area = circumference_area(edge_a, edge_b, edge_c)
+    cos_a = (edge_b ** 2 + edge_c ** 2 - edge_a ** 2) / (2 * edge_b * edge_c)
+    cos_b = (edge_a ** 2 + edge_c ** 2 - edge_b ** 2) / (2 * edge_a * edge_c)
+    cos_c = (edge_a ** 2 + edge_b ** 2 - edge_c ** 2) / (2 * edge_a * edge_b)
+    rad_a = acos(cos_a)
+    rad_b = acos(cos_b)
+    rad_c = acos(cos_c)
+    sin_a = sin(rad_a)
+    return f"""b = {edge_b}.
+∠A = {degrees(rad_a)}°.
+∠B = {degrees(rad_b)}°.
+S = {area}.
+C = {circumference}.
+rI = {2 * area / circumference}.
+rO = {edge_a / sin_a / 2}
+sinA = {sin_a}.
+sinB = {sin(rad_b)}.
+sinC = {sin(rad_c)}.
+cosA = {cos_a}.
+cosB = {cos_b}.
+cosC = {cos_c}.
+tanA = {tan(rad_a)}.
+tanB = {tan(rad_b)}.
+tanC = {tan(rad_c)}."""
