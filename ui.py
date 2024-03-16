@@ -1,10 +1,8 @@
-import win32con
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout
 from PyQt5.QtGui import QFont
 from qfluentwidgets import FluentIcon
 from qfluentwidgets import TextEdit, RadioButton, PrimaryPushButton, LineEdit, MessageBox, HyperlinkButton, ScrollBar
-from win32clipboard import OpenClipboard, EmptyClipboard, SetClipboardData, CloseClipboard
 from calculate import p_sss, p_sas, p_aas
 
 
