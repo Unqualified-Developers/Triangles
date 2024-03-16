@@ -8,13 +8,6 @@ from win32clipboard import OpenClipboard, EmptyClipboard, SetClipboardData, Clos
 from calculate import p_sss, p_sas, p_aas
 
 
-def copy(text):
-    OpenClipboard()
-    EmptyClipboard()
-    SetClipboardData(win32con.CF_UNICODETEXT, text)
-    CloseClipboard()
-
-
 class Window(QWidget):
     def __init__(self):
         super().__init__()
