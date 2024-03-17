@@ -13,7 +13,7 @@ def circumference_area(edge_a, edge_b, edge_c):
     )
 
 
-def test_sss(edge_a, edge_b, edge_c):
+def sss(edge_a, edge_b, edge_c):
     if edge_a + edge_b <= edge_c or edge_a + edge_c <= edge_b or edge_b + edge_c <= edge_a:
         raise ValueError
     circumference, area = circumference_area(edge_a, edge_b, edge_c)
@@ -41,7 +41,7 @@ tanB = {tan(rad_b)}.
 tanC = {tan(rad_c)}."""
 
 
-def test_sas(edge_a, angle_c, edge_b):
+def sas(edge_a, angle_c, edge_b):
     if angle_c >= 180:  # The angle of a triangle is never bigger than 180°.
         raise ValueError
     rad_c = radians(angle_c)
@@ -71,7 +71,7 @@ tanB = {tan(rad_b)}.
 tanC = {tan(rad_c)}."""
 
 
-def test_aas(angle_a, angle_b, edge_a):
+def aas(angle_a, angle_b, edge_a):
     if angle_a + angle_b >= 180:
         raise ValueError
     rad_a = radians(angle_a)
@@ -103,7 +103,7 @@ tanB = {tan(rad_b)}.
 tanC = {tan(rad_c)}."""
 
 
-def test_asa(angle_b, edge_a, angle_c):
+def asa(angle_b, edge_a, angle_c):
     if angle_b + angle_c >= 180:
         raise ValueError
     angle_a = 180 - angle_b - angle_c
@@ -136,7 +136,7 @@ tanB = {tan(rad_b)}.
 tanC = {tan(rad_c)}."""
 
 
-def test_hl(edge_a, edge_c):
+def hl(edge_a, edge_c):
     edge_b = sqrt(edge_c**2 - edge_a**2)
     if edge_a + edge_b <= edge_c:
         raise ValueError
