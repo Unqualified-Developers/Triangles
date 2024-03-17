@@ -30,7 +30,8 @@ def sss(edge_a, edge_b, edge_c):
 S = {area}.
 C = {circumference}.
 rI = {2 * area / circumference}.
-rO = {edge_a / sin_a / 2}sinA = {sin_a}.
+rO = {edge_a / sin_a / 2}
+sinA = {sin_a}.
 sinB = {sin(rad_b)}.
 sinC = {sin(rad_c)}.
 cosA = {cos_a}.
@@ -59,7 +60,7 @@ def sas(edge_a, angle_c, edge_b):
 S = {area}.
 C = {circumference}.
 rI = {2 * area / circumference}.
-rO = {edge_a / sin_a / 2}
+rO = {edge_a / sin_a / 2}.
 sinA = {sin_a}.
 sinB = {sin(rad_b)}.
 sinC = {sin(rad_c)}.
@@ -91,7 +92,7 @@ c = {edge_c}.
 S = {area}.
 C = {circumference}.
 rI = {2 * area / circumference}.
-rO = {d / 2}
+rO = {d / 2}.
 sinA = {sin_a}.
 sinB = {sin_b}.
 sinC = {sin_c}.
@@ -124,7 +125,7 @@ c = {edge_c}.
 S = {area}.
 C = {circumference}.
 rI = {2 * area / circumference}.
-rO = {d / 2}
+rO = {d / 2}.
 sinA = {sin_a}.
 sinB = {sin_b}.
 sinC = {sin_c}.
@@ -152,7 +153,7 @@ def hl(edge_a, edge_c):
 S = {area}.
 C = {circumference}.
 rI = {2 * area / circumference}.
-rO = {edge_a / sin_a / 2}
+rO = {edge_a / sin_a / 2}.
 sinA = {sin_a}.
 sinB = {sin_b}.
 sinC = 1.
