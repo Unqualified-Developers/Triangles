@@ -30,7 +30,7 @@ def sss(edge_a, edge_b, edge_c):
 S = {area}.
 C = {circumference}.
 rI = {2 * area / circumference}.
-rO = {edge_a / sin_a / 2}
+rO = {edge_a / sin_a / 2}.
 sinA = {sin_a}.
 sinB = {sin(rad_b)}.
 sinC = {sin(rad_c)}.
