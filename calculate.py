@@ -141,7 +141,8 @@ def hl(edge_a, edge_c):
     edge_b = sqrt(edge_c**2 - edge_a**2)
     if edge_a + edge_b <= edge_c:
         raise ValueError
-    circumference, area = circumference_area(edge_a, edge_b, edge_c)
+    area = edge_a * edge_b / 2
+    circumference = edge_a + edge_b + edge_c
     sin_a = edge_a / edge_c
     sin_b = edge_b / edge_c
     cos_a = sin_b
