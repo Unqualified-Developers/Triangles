@@ -18,4 +18,4 @@ jobs:
         pip install pyinstaller
         pip freeze
     - name: Generate package
-      run: pyinstaller -D -w main.py
+      run: pyinstaller -D -w .\main.py
