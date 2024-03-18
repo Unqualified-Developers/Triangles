@@ -146,10 +146,10 @@ def hl(edge_a, edge_c):
     sin_b = edge_b / edge_c
     cos_a = sin_b
     cos_b = sin_a
-    angle_a = degrees(acos(cos_a))
+    angle_b = degrees(acos(cos_b))
     return f"""b = {edge_b}.
-∠A = {angle_a}°.
-∠B = {90 - angle_a}°.
+∠A = {90 - angle_b}°.
+∠B = {angle_b}°.
 S = {area}.
 C = {circumference}.
 rI = {2 * area / circumference}.
