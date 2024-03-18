@@ -40,6 +40,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: dist/main.exe
+          asset_path: /home/runner/work/Triangles/Triangles/dist/main.exe
           asset_name: Triangles_${version}_amd64.exe
           asset_content_type: application/octet-stream
