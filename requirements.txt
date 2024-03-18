@@ -1,0 +1,1 @@
+pyqt-fluent-widgets==1.5.2
