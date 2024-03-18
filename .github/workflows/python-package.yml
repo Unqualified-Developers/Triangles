@@ -1,21 +1,36 @@
-name: Generate Python Package
+name: Generate and Upload Python Package
 
-on: [push]
+on:
+  release:
+    types: [published]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install pyinstaller
-        pip freeze
-    - name: Generate package
-      run: pyinstaller -D -w main.pyw
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+          pip install py7zr
+          pip freeze
+      - name: Generate package
+        run: pyinstaller -D -w main.pyw
+      - name: Create 7z archive
+        run: |
+          version=$(git describe --tags --abbrev=0)
+          filename="Triangles_${version}_amd64.7z"
+          py7zr a $filename dist -mmt -mx9
+      - name: Upload 7z archive to Release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./Triangles_${version}_amd64.7z
+          asset_name: Triangles_${version}_amd64.7z
+          asset_content_type: application/x-7z-compressed
