@@ -2,7 +2,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout
 from PyQt5.QtGui import QFont
 from qfluentwidgets import FluentIcon
-from qfluentwidgets import (TextEdit, RadioButton, PrimaryPushButton, 
+from qfluentwidgets import (TextEdit, RadioButton, PrimaryPushButton,
                             LineEdit, MessageBox, HyperlinkButton, ScrollBar)
 from calculate import sss, sas, aas, asa, hl
 
@@ -59,8 +59,10 @@ class Window(QWidget):
         self.e_ac = LineEdit(self)
 
         self.pb = PrimaryPushButton('Process', self)
-        self.lb = HyperlinkButton(url='https://github.com/Unqualified-Developers/Triangles', 
-                                  text='Source Code Repository', icon=FluentIcon.GITHUB)
+        self.lb = HyperlinkButton(
+          url='https://github.com/Unqualified-Developers/Triangles',
+          text='Source Code Repository', icon=FluentIcon.GITHUB
+        )
 
         self.r_sss.clicked.connect(self.sss_c)
         self.r_sas.clicked.connect(self.sas_c)
