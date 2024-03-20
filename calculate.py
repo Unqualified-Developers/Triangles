@@ -14,7 +14,9 @@ def circumference_area(edge_a, edge_b, edge_c):
 
 
 def sss(edge_a, edge_b, edge_c):
-    if edge_a + edge_b <= edge_c or edge_a + edge_c <= edge_b or edge_b + edge_c <= edge_a:
+    if edge_a + edge_b <= edge_c or \
+       edge_a + edge_c <= edge_b or \
+       edge_b + edge_c <= edge_a:
         raise ValueError
     circumference, area = circumference_area(edge_a, edge_b, edge_c)
     cos_a = (edge_b ** 2 + edge_c ** 2 - edge_a ** 2) / (2 * edge_b * edge_c)
