@@ -2,7 +2,8 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout
 from PyQt5.QtGui import QFont
 from qfluentwidgets import FluentIcon
-from qfluentwidgets import TextEdit, RadioButton, PrimaryPushButton, LineEdit, MessageBox, HyperlinkButton, ScrollBar
+from qfluentwidgets import (TextEdit, RadioButton, PrimaryPushButton, 
+                            LineEdit, MessageBox, HyperlinkButton, ScrollBar)
 from calculate import sss, sas, aas, asa, hl
 
 
@@ -58,7 +59,8 @@ class Window(QWidget):
         self.e_ac = LineEdit(self)
 
         self.pb = PrimaryPushButton('Process', self)
-        self.lb = HyperlinkButton(url='https://github.com/Unqualified-Developers/Triangles', text='Source Code Repository', icon=FluentIcon.GITHUB)
+        self.lb = HyperlinkButton(url='https://github.com/Unqualified-Developers/Triangles', 
+                                  text='Source Code Repository', icon=FluentIcon.GITHUB)
 
         self.r_sss.clicked.connect(self.sss_c)
         self.r_sas.clicked.connect(self.sas_c)
@@ -149,15 +151,24 @@ class Window(QWidget):
     def process(self):
         try:
             if self.r_sss.isChecked():
-                self.l_r.setText(sss(float(self.e_ea.text()), float(self.e_eb.text()), float(self.e_ec.text())))
+                self.l_r.setText(sss(float(self.e_ea.text()),
+                                     float(self.e_eb.text()),
+                                     float(self.e_ec.text())))
             elif self.r_sas.isChecked():
-                self.l_r.setText(sas(float(self.e_ea.text()), float(self.e_ac.text()), float(self.e_eb.text())))
+                self.l_r.setText(sas(float(self.e_ea.text()),
+                                     float(self.e_ac.text()),
+                                     float(self.e_eb.text())))
             elif self.r_aas.isChecked():
-                self.l_r.setText(aas(float(self.e_aa.text()), float(self.e_ab.text()), float(self.e_ea.text())))
+                self.l_r.setText(aas(float(self.e_aa.text()),
+                                     float(self.e_ab.text()),
+                                     float(self.e_ea.text())))
             elif self.r_asa.isChecked():
-                self.l_r.setText(asa(float(self.e_ab.text()), float(self.e_ea.text()), float(self.e_ac.text())))
+                self.l_r.setText(asa(float(self.e_ab.text()),
+                                     float(self.e_ea.text()),
+                                     float(self.e_ac.text())))
             elif self.r_hl.isChecked():
-                self.l_r.setText(hl(float(self.e_ea.text()), float(self.e_ec.text())))
+                self.l_r.setText(hl(float(self.e_ea.text()),
+                                    float(self.e_ec.text())))
         except ValueError:
             m = MessageBox("Process", "This is not a triangle.", self)
             m.exec_()
