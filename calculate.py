@@ -55,11 +55,13 @@ def sas(edge_a, angle_c, edge_b):
     rad_a = acos(cos_a)
     rad_b = acos(cos_b)
     sin_c = sin(rad_c)
+    area = edge_a * edge_b * sin_c / 2
+    circumference = edge_a + edge_b + edge_c
     return f"""c = {edge_c}.
 ∠A = {degrees(rad_a)}°.
 ∠B = {degrees(rad_b)}°.
-S = {edge_a * edge_b * sin_c / 2}.
-C = {edge_a + edge_b + edge_c}.
+S = {area}.
+C = {circumference}.
 rI = {2 * area / circumference}.
 rO = {edge_a / sin_a / 2}.
 sinA = {sin(rad_a)}.
