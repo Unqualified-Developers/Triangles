@@ -63,7 +63,7 @@ def sas(edge_a, angle_c, edge_b):
 S = {area}.
 C = {circumference}.
 rI = {2 * area / circumference}.
-rO = {edge_a / sin_a / 2}.
+rO = {edge_c / sin_c / 2}.
 sinA = {sin(rad_a)}.
 sinB = {sin(rad_b)}.
 sinC = {sin_c}.
