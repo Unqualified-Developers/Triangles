@@ -156,7 +156,7 @@ def hl(edge_a, edge_c):
 ∠B = {angle_b}°.
 S = {area}.
 C = {circumference}.
-rI = {edge_a + edge_b - edge_c / 2}.
+rI = {(edge_a + edge_b - edge_c) / 2}.
 rO = {edge_c / 2}.
 sinA = {sin_a}.
 sinB = {sin_b}.
