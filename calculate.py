@@ -1,4 +1,8 @@
-from math import sqrt, sin, cos, tan, acos, degrees, radians
+from math import *
+
+
+def e(code):
+    return eval(code)
 
 
 def circumference_area(edge_a, edge_b, edge_c):
