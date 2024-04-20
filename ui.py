@@ -4,7 +4,7 @@ from PyQt5.QtGui import QFont
 from qfluentwidgets import FluentIcon
 from qfluentwidgets import (TextEdit, RadioButton, PrimaryPushButton,
                             LineEdit, MessageBox, HyperlinkButton, ScrollBar)
-from calculate import sss, sas, aas, asa, hl
+from calculate import e, sss, sas, aas, asa, hl
 
 
 class FLabel(QLabel):
@@ -153,24 +153,24 @@ class Window(QWidget):
     def process(self):
         try:
             if self.r_sss.isChecked():
-                self.l_r.setText(sss(eval(self.e_ea.text()),
-                                     eval(self.e_eb.text()),
-                                     eval(self.e_ec.text())))
+                self.l_r.setText(sss(e(self.e_ea.text()),
+                                     e(self.e_eb.text()),
+                                     e(self.e_ec.text())))
             elif self.r_sas.isChecked():
-                self.l_r.setText(sas(eval(self.e_ea.text()),
-                                     eval(self.e_ac.text()),
-                                     eval(self.e_eb.text())))
+                self.l_r.setText(sas(e(self.e_ea.text()),
+                                     e(self.e_ac.text()),
+                                     e(self.e_eb.text())))
             elif self.r_aas.isChecked():
-                self.l_r.setText(aas(eval(self.e_aa.text()),
-                                     eval(self.e_ab.text()),
-                                     eval(self.e_ea.text())))
+                self.l_r.setText(aas(e(self.e_aa.text()),
+                                     e(self.e_ab.text()),
+                                     e(self.e_ea.text())))
             elif self.r_asa.isChecked():
-                self.l_r.setText(asa(eval(self.e_ab.text()),
-                                     eval(self.e_ea.text()),
-                                     eval(self.e_ac.text())))
+                self.l_r.setText(asa(e(self.e_ab.text()),
+                                     e(self.e_ea.text()),
+                                     e(self.e_ac.text())))
             elif self.r_hl.isChecked():
-                self.l_r.setText(hl(eval(self.e_ea.text()),
-                                    eval(self.e_ec.text())))
+                self.l_r.setText(hl(e(self.e_ea.text()),
+                                    e(self.e_ec.text())))
         except Exception:
             m = MessageBox("Process", "This is not a triangle.", self)
             m.exec_()
