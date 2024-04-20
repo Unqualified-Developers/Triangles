@@ -1,6 +1,10 @@
 from math import sqrt, sin, cos, tan, acos, degrees, radians
 
 
+def e(code):
+    return eval(code)
+
+
 def circumference_area(edge_a, edge_b, edge_c):
     half_circumference = (edge_a + edge_b + edge_c) / 2
     return half_circumference * 2, sqrt(half_circumference * (
