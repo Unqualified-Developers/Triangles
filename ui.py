@@ -171,6 +171,6 @@ class Window(QWidget):
             elif self.r_hl.isChecked():
                 self.l_r.setText(hl(e(self.e_ea.text()),
                                     e(self.e_ec.text())))
-        except ValueError:
+        except:
             m = MessageBox("Process", "This is not a triangle.", self)
             m.exec_()
